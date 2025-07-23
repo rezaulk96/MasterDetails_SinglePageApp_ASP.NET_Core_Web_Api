@@ -1,0 +1,51 @@
+﻿@model IEnumerable<work_01_MD.Models.Candidate>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <h2 class="display-5">Candidate List</h2>
+        <div class="d-flex justify-content-end">
+            <a asp-action="Create" asp-controller="Candidates" class="btn btn-outline-primary btn-sm mb-2">Add New Candidate</a>
+        </div>
+        @foreach (var c in Model)
+        {
+            <div class="card mb-2">
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        <img src="@c.Image" width="30" style="border-radius:6px;" />
+                        <label class="me-2"><b>Candidate Name: </b>@Html.DisplayFor(x => c.CandidateName)</label>
+                        <label class="me-2"><b>Birth Date: </b>@Html.DisplayFor(x => c.DateOfBirth)</label>
+                        <label class="me-2"><b>Phone: </b>@Html.DisplayFor(x => c.Phone)</label>
+                        <label class="me-2"><b>Fresher?: </b>@Html.DisplayFor(x => c.Fresher)</label>
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Edit", "Candidates", new {id=c.CandidateId})" id="btnEdit" class="btn btn-success btn-sm">Edit</a>
+                        <a href="@Url.Action("Delete", "Candidates", new {id=c.CandidateId})" id="btnDelete" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Skill Id</th>
+                                <th>Skill Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in c.CandidateSkills)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(x => item.Skill.SkillId)</td>
+                                    <td>@Html.DisplayFor(x => item.Skill.SkillName)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

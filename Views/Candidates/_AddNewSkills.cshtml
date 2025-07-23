@@ -1,0 +1,9 @@
+﻿@model work_01_MD.Models.Skill
+<div class="row d-flex justify-content-between">
+    <div class="col-10 mb-2">
+        @Html.DropDownListFor(x=>x.SkillId,ViewBag.skills as SelectList, "----Select----", new {@class= "form-select form-select-sm" })
+    </div>
+    <div class="col-2 mb-2">
+        <a class="btn btn-danger btn-sm" id="btnDelete">Remove</a>
+    </div>
+</div>
